@@ -1,5 +1,5 @@
 resource "aws_iam_role" "iam_for_lambda" {
-  name = "lambda_hjtest_role"
+  name = "lambda_daily_ami_backup_role"
   assume_role_policy = file("${path.module}/iam_policy_file_lambda_assume_role.json")
 }
 
