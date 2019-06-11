@@ -1,0 +1,20 @@
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Action": [
+        "kms:GetParametersForImport",
+        "kms:ListKeys",
+        "kms:ListKeyPolicies",
+        "kms:GetKeyRotationStatus",
+        "kms:ListAliases",
+        "kms:GetKeyPolicy",
+        "kms:DescribeKey",
+        "kms:ListResourceTags",
+        "kms:ListGrants"
+      ],
+      "Resource": "*"
+    }
+  ]
+}
