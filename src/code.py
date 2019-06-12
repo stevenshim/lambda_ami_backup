@@ -2,7 +2,7 @@ import itertools
 import os
 from datetime import datetime
 import boto3
-from src.EC2TagFilter import EC2TagFilter
+from EC2TagFilter import EC2TagFilter
 
 ec2_client = boto3.client('ec2', 'ap-northeast-2')
 ec2_res = boto3.resource('ec2', 'ap-northeast-2')
