@@ -1,5 +1,5 @@
 resource "aws_iam_role" "iam_for_lambda" {
-  name = "lambda_daily_ami_backup_role"
+  name = "lambda_daily_backup_role"
   assume_role_policy = file("${path.module}/iam_policy_file_lambda_assume_role.json")
 }
 
@@ -7,7 +7,7 @@ resource "aws_iam_role_policy_attachment" "ami_backup_lambda_ec2_readonly" {
   policy_arn          =   "arn:aws:iam::aws:policy/AmazonEC2ReadOnlyAccess"
   role                =   aws_iam_role.iam_for_lambda.name
 }
-git
+
 resource "aws_iam_role_policy_attachment" "ami_backup_lambda_basic_exec" {
   policy_arn          =   "arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
   role                =   aws_iam_role.iam_for_lambda.name

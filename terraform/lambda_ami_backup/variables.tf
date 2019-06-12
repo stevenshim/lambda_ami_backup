@@ -12,3 +12,7 @@ variable "schedule_exp" {
     description = "The cloudwatch event schedule expression."
     default = "cron(0 18 * * ? *)"
 }
+
+variable "kms_key_arn" {
+    description = "The managed KMS key for lambda function. You can copy it from KMS Console > AWS Managed keys > aws/lambda."
+}

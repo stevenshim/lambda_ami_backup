@@ -12,4 +12,5 @@ module "lambda_ami_backup" {
     schedule_exp        =   var.schedule_exp
     tag_key             =   var.ec2_tag_key_env_var
     tag_value           =   var.ec2_tag_value_env_var
+    kms_key_arn         =   var.kms_key_arn
 }

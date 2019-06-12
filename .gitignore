@@ -3,3 +3,4 @@ venv
 *.terraform
 *.zip
 *.idea
+*.backup
