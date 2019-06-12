@@ -35,4 +35,20 @@ variable "schedule_exp" {
     description = "The cloudwatch event schedule expression."
     default = "cron(0 18 * * ? *)"
 }
+
+variable "kms_key_arn" {
+    description = "The managed KMS key for lambda function. You can copy it from KMS Console > AWS Managed keys > aws/lambda."
+    default = "FILL_YOUR_KMS_LAMBDA_KEY_ARM"
+}
+
 ```
+### How to get KMS aws/lambda key ARN.
+1. Go to AWS KMS Console.
+
+2. Select AWS managed keys > aws/lambda.
+![kms_key_1](./img/kms_key.png)
+
+3. Copy your aws/lambda key ARN.
+![kms_key_2](./img/kms_key2.png)
+
+4. Replace `kms_key_arn` default value in `terraform/lambda_ami_backup/variables.tf`.
