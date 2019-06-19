@@ -1,12 +1,13 @@
 variable "tag_key" {}
 variable "tag_value" {}
+variable "kms_key_arn" {}
 
 resource "aws_lambda_function" "ami_backup_lambda" {
   function_name = "lambda_ec2_ami_backup"
   filename      = "${path.module}/code.zip"
   role          = aws_iam_role.iam_for_lambda.arn
-  handler       = "code.lambda_handler"
-  kms_key_arn   = "arn:aws:kms:ap-northeast-2:072548720675:key/904f40e2-d04e-499e-99c0-59c9a5734033"
+  handler       = "handler.lambda_handler"
+  kms_key_arn   = var.kms_key_arn
 
   source_code_hash = filebase64sha256("${path.module}/code.zip")
 
