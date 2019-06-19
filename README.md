@@ -1,8 +1,12 @@
 # Daily EC2 AMI Backup by lambda
-
 This project using `Terraform` to help you deploy a AWS `Lambda` function with `IAM Role` and `Cloudwatch Event`.  
 
 ![simple darchitecture](./img/simple-architecture.png)
+
+If your EC2 has a tag key `Backup` and value `by_lambda`, then it'll be backup AMI by lambda.
+
+**EC2 Tag Example**
+![example](./img/ec2_capture.png)
 
 # Updated
 * 2019-06-20 
