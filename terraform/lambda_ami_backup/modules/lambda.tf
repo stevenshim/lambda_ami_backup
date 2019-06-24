@@ -1,6 +1,7 @@
 variable "tag_key" {}
 variable "tag_value" {}
 variable "kms_key_arn" {}
+variable "max_images" {}
 
 resource "aws_lambda_function" "ami_backup_lambda" {
   function_name = "lambda_ec2_ami_backup"
@@ -8,6 +9,7 @@ resource "aws_lambda_function" "ami_backup_lambda" {
   role          = aws_iam_role.iam_for_lambda.arn
   handler       = "handler.lambda_handler"
   kms_key_arn   = var.kms_key_arn
+  timeout       = 10
 
   source_code_hash = filebase64sha256("${path.module}/code.zip")
 
@@ -15,7 +17,9 @@ resource "aws_lambda_function" "ami_backup_lambda" {
 
   environment {
     variables = {
-      "${var.tag_key}" = var.tag_value
+      "TAG_KEY" = var.tag_key
+      "TAG_VALUE" = var.tag_value
+      "MAX_RESERVED_COUNT" = var.max_images
     }
   }
 }

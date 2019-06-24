@@ -12,3 +12,8 @@ variable "schedule_exp" {
     description = "The cloudwatch event schedule expression."
     default = "cron(0 18 * * ? *)"
 }
+
+variable "max_images" {
+    description = "The maximun count of backup images"
+    default = 5
+}

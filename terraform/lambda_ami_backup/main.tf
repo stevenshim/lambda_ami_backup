@@ -13,4 +13,5 @@ module "lambda_ami_backup" {
     tag_key             =   var.ec2_tag_key_env_var
     tag_value           =   var.ec2_tag_value_env_var
     kms_key_arn         =   data.aws_kms_alias.lambda.target_key_arn
+    max_images          =   var.max_images
 }
