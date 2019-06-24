@@ -3,23 +3,10 @@ import itertools
 import boto3
 
 
-class EC2Filter:
-
-    def __init__(self, tag_key, tag_value):
+class EC2:
+    def __init__(self):
         self.ec2_client = boto3.client('ec2', 'ap-northeast-2')
         self.reservations = None
-        self.filter = None
-        self.__init_filter(tag_key, tag_value)
-        self.__do_filter()
-
-    def __init_filter(self, tag_key, tag_value):
-        self.filter = [{
-            'Name': 'tag:' + tag_key, 'Values': [tag_value]
-        }]
-
-    def __do_filter(self):
-        print(f'[Do_Filter] filter: {self.filter}')
-        self.reservations = self.ec2_client.describe_instances(Filters=self.filter)
 
     def __get_id_and_name(self, instance):
         instance_id = instance['InstanceId']
@@ -42,3 +29,12 @@ class EC2Filter:
             item.append(map(self.__get_id_and_name, instances))
 
         return list(itertools.chain(*item))
+
+    def filter(self, tag_key: str, tag_value: str) -> 'EC2':
+        filters = [{
+            'Name': 'tag:' + tag_key, 'Values': [tag_value]
+        }]
+        print(f'[EC2.filter] filter: {filters}')
+
+        self.reservations = self.ec2_client.describe_instances(Filters=filters)
+        return self
