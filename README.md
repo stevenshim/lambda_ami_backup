@@ -9,6 +9,9 @@ If your EC2 has a tag key `Backup` and value `by_lambda`, then it'll be backup A
 ![example](./img/ec2_capture.png)
 
 # Updated
+* 2019-06-24
+  * Delete old AMIs, if existing AMIs are exceeded reserved count. (default = 5)
+  * Bugfix - Environment variables injection didn't work properly.
 * 2019-06-20 
   * KMS lambda target arn is loaded automatically.
   * Bugfix
@@ -57,5 +60,10 @@ variable "ec2_tag_value_env_var" {
 variable "schedule_exp" {
     description = "The cloudwatch event schedule expression."
     default = "cron(0 18 * * ? *)"
+}
+
+variable "max_images" {
+    description = "The maximun count of backup images"
+    default = 5
 }
 ```
