@@ -10,22 +10,20 @@ ec2_res = boto3.resource('ec2', 'ap-northeast-2')
 tag_key = os.environ.get('TAG_KEY', 'Backup')
 tag_value = os.environ.get('TAG_VALUE', 'by_lambda')
 
-
 def _ami_backup():
     ec2_filtered = EC2().filter(tag_key=tag_key, tag_value=tag_value)
     ec2_info: list = ec2_filtered.get_instance_ids_and_names()
-    print(f'ec2_info: {ec2_info}')
 
     image = Image()
     for ec2 in ec2_info:
         name = ec2.get('instance_name')
         ec2_id = ec2.get('instance_id')
-        print(f'name: {name}, ec2_id: {ec2_id}')
         image.bake(ec2_id=ec2_id, name=name)
 
 
 def _ami_delete():
-    print('')
+    image = Image().filter()
+    image.delete_amis()
 
 
 def lambda_handler(event, context):
